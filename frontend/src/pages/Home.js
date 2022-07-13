@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 //Import Components
 import WorkoutsDetails from '../components/WorkoutsDetails'
+import WorkoutForm from '../components/WorkoutForm'
 
 
 const Home = () => {
@@ -41,8 +42,8 @@ const Home = () => {
                 workout={workout}
                 /> 
             ))}
-
         </div>
+        <WorkoutForm/>
     </div>
   )
 }
