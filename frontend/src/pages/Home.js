@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+//Import Components
+import WorkoutsDetails from '../components/WorkoutsDetails'
 
 
 const Home = () => {
@@ -34,9 +36,10 @@ const Home = () => {
             workouts then we can map through them. If we map workouts, we have access to each individual
             workoute hence (workout) */}
             {workouts && workouts.map((workout) => (
-                <p key={workout._id}>
-                    {workout.title}
-                </p>
+                <WorkoutsDetails
+                key={workout.id}
+                workout={workout}
+                /> 
             ))}
 
         </div>
