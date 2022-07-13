@@ -2,35 +2,18 @@ const { response } = require('express')
 const express = require('express')
 const Workout = require('../models/workoutModel')
 
+const {createWorkout, getOneWorkout, getWorkouts} = require('../controllers/workoutControllers')
+
 const router = express.Router()
 
 // GET ALL WORKOUTS
-router.get('/', (req, res) => {
-    res.json({message: 'Get all workouts'})
-}) 
+router.get('/', getWorkouts)
 
 // GET A SINGLE WORKOUT
-router.get('/:id', (req, res) => {
-    res.json({message: 'GET A SINGLE WORKOut'})
-})
+router.get('/:id', getOneWorkout )
 
 // POST A NEW WORKOUT
-router.post('/', async (req, res) => {
-    // grab properties from rq body byt destructing req.body
-    const {title, load, reps} = req.body
-    
-    try {
-        const workout = await Workout.create({
-            title,
-            load,
-            reps
-        }) 
-        res.status(200).json(workout)
-    } catch (error){
-        res.status(400).json({error: error.message})
-    }
-
-})
+router.post('/', createWorkout )
 
 // DELETE A WORKOUT
 router.delete('/:id', (req, res) => {
