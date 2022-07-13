@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 app.use(express.json())
  
 //routes
+// our main route, we give a url and then the workoutRoutes
 app.use('/api/workouts', workoutRoutes)
 
 // connect to database

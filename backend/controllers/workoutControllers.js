@@ -1,15 +1,17 @@
-const Workout = require('../models/workoutModel')
 const mongoose = require('mongoose')
+const Workout = require('../models/workoutModel')
 
 // GET all workouts
 const getWorkouts = async (req, res) => {
     const workouts = await Workout.find({}).sort({createdAt: -1})
-
+    
     res.status(200).json(workouts)
 }
 
 // GET a single workout
 const getOneWorkout = async (req, res) => {
+    //deconstruct req.params which is the query parameter ('/:id') from the api endpoint
+    //to use be able to use it.
     const {id} = req.params 
 
     // check if id is valid
@@ -92,3 +94,6 @@ module.exports = {
     deleteWorkout,
     updateWorkout
 }
+
+// NOTE:
+// These controller functions are exported and used in our routes file.
