@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 //Import Components
 import WorkoutsDetails from '../components/WorkoutsDetails'
@@ -7,8 +8,7 @@ import WorkoutForm from '../components/WorkoutForm'
 
 const Home = () => {
 
-    // workouts state
-    const [workouts, setWorkouts] = useState(null)
+   const {workouts, dispatch} = useWorkoutsContext()
 
     // Fires a function when a component is rendered, we only want it to fire once the component is first
     // rendered. To specify that we leave the dependency array [] empty.
@@ -21,8 +21,11 @@ const Home = () => {
             const json = await response.json()
             // Check if response is ok, if it is...
             if(response.ok) {
-                //Update Workouts state with the json response
-                setWorkouts(json)
+                //Update Workouts state with the json response via dispatch
+                dispatch({
+                    type: 'SET_WORKOUTS',
+                    payload: json
+                })
             }
         }
 
